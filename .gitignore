@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+venv/
+venv_crowd/
+.env
+
+# Model Weights (DO NOT PUSH)
+*.pth
+*.pt
+*.h5
+*.ckpt
+pretrained/
+
+# Videos & Media
+*.mp4
+*.avi
+*.mov
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
