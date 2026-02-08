@@ -7,6 +7,8 @@ class RealtimeMonitor:
         self.frame_id = 0
         self.grid_rows = grid_rows
         self.grid_cols = grid_cols
+        self.last_flow = None
+
 
     # --------------------
     # MOTION COMPUTATION
@@ -22,6 +24,7 @@ class RealtimeMonitor:
             )
             mag, _ = cv2.cartToPolar(flow[..., 0], flow[..., 1])
             motion_score = np.mean(mag)
+            self.last_flow = flow   # ⬅ STORE FLOW
 
         self.prev_gray = gray
         return motion_score

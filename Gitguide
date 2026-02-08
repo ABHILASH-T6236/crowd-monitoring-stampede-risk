@@ -1,0 +1,24 @@
+AFTER PUSH (Very Important)
+
+From now on, never work without commits.
+
+Recommended habit:
+
+git add .
+git commit -m "Added SRI computation logic"
+git push
+
+
+Short, meaningful messages = academic proof.
+
+🎓 NEXT (I’ll Do This With You)
+
+After you confirm push is done, I can:
+
+Create a professional academic README.md
+
+Suggest Phase-2 folder restructuring
+
+Set up branching for experiments
+
+Help you tag versions for dissertation submission

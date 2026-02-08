@@ -3,6 +3,10 @@ import torch
 import numpy as np
 from csrnet import CSRNet
 from realtime_monitor import RealtimeMonitor
+from crowd_flow_predictor import CrowdFlowPredictor
+
+predictor = CrowdFlowPredictor(alpha=0.1)
+
 
 # --------------------
 # DEVICE
@@ -70,12 +74,28 @@ while cap.isOpened():
 
     density = density_map.squeeze().cpu().numpy()
     avg_density = np.mean(density)
+    flow = monitor.last_flow
+    if flow is not None:
+        future_density = predictor.predict(density, flow)
+        future_avg_density = np.mean(future_density)
+    else:
+        future_avg_density = avg_density
+    
+    print(f"Now Density: {avg_density:.4f} | "
+    f"Predicted Density: {future_avg_density:.4f}")
+
 
     # --------------------
     # MOTION + RISK
     # --------------------
     motion_score = monitor.compute_motion(frame)
     sri = avg_density * motion_score
+    flow = monitor.last_flow
+    if flow is not None:
+        print("Flow shape:", flow.shape)
+
+
+    
 
     # --------------------
     # STORE VALUES (CORRECT PLACE)
